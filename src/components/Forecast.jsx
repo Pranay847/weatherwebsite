@@ -1,8 +1,13 @@
 import React from 'react';
 
+// Group by the viewer's local calendar day. dayLabel() and the midday-icon
+// check below both use local time, so a UTC key (toISOString) would split
+// days at UTC midnight and label each bucket with the wrong date.
 function toDateKey(dt) {
   const d = new Date(dt * 1000);
-  return d.toISOString().slice(0, 10);
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${mm}-${dd}`;
 }
 
 function dayLabel(dt) {

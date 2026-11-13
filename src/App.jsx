@@ -43,7 +43,7 @@ function App() {
       try {
         const newHist = addToHistory(curData?.name || city);
         setHistory(newHist);
-      } catch (e) {
+      } catch {
         // ignore history errors
       }
     } catch (err) {
